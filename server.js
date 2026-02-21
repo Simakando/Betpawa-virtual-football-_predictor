@@ -67,37 +67,4 @@ const server = http.createServer(async (req, res) => {
                     }
 
                     async function getTips() {
-                        document.getElementById('loader').style.display = 'block';
-                        document.getElementById('box').style.display = 'none';
-                        
-                        try {
-                            const res = await fetch('/api/get-data');
-                            const data = await res.json();
-                            playSound(); // SOUND NOTIFICATION
-                            
-                            document.getElementById('loader').style.display = 'none';
-                            document.getElementById('box').style.display = 'block';
-                            document.getElementById('box').innerHTML = "<b>Next Round:</b> " + (data.items ? data.items[0].name : "No Data");
-                            console.log(data);
-                        } catch (e) {
-                            alert("Safety check failed. Try again in 30 seconds.");
-                        }
-                    }
-                </script>
-            </body>
-            </html>
-        `);
-    } 
-    // DATA FETCH
-    else if (req.url === '/api/get-data') {
-        try {
-            const data = await fetchSafe('/api/sportsbook/virtual/v1/seasons/list/actual');
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(data);
-        } catch (e) {
-            res.writeHead(500); res.end("Error");
-        }
-    }
-});
-
-server.listen(PORT, '0.0.0.0', () => console.log('Server is running!'));
+                        document.getElementById(
